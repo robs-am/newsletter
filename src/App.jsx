@@ -2,6 +2,7 @@ import "./App.css";
 
 import { ReactComponent as ImageMobile } from "./components/Image/ImageMobile.svg";
 import { ReactComponent as IconList } from "./assets/images/icon-list.svg";
+/* import Button from "./components/Button/Button"; */
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <IconList />
           <li>And much more!</li>
         </div>
+        {/* <Button /> */}
       </ul>
     </>
   );
