@@ -1,13 +1,20 @@
 import "./App.css";
-import ImageDesktop from "./components/Image/ImageDesktop";
-import ImageMobile from "./components/Image/ImageMobile";
+
+/* import { ReactComponent as ImageDesktop } from "./components/Image/ImageDesktop.svg"; */
+import { ReactComponent as ImageMobile } from "./components/Image/ImageMobile.svg";
 
 function App() {
   return (
     <>
-      <h1>Hello!</h1>
-      <ImageMobile />
-      <ImageDesktop />
+      <div className="w-full">
+        {/* <ImageDesktop /> */}
+        <ImageMobile className="w-screen h-auto object-cover" />
+      </div>
+      <h1 className="title font-bold text-4xl text-left">Stay updated!</h1>
+      <p
+        className="text-left
+      "
+      ></p>
     </>
   );
 }
