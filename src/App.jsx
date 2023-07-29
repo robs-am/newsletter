@@ -8,28 +8,28 @@ import Form from "./components/Form/Form";
 function App() {
   return (
     <>
-      <div className="newsletter">
+      <div className="newsletter flex flex-col gap-[30px]">
         <div className="w-full">
           <ImageMobile className="w-full h-auto object-cover" />
         </div>
-        <section className="flex flex-col px-6  gap-5">
+        <section className="flex flex-col px-8 gap-5">
           <h1 className="title font-bold text-4xl  text-darkGrey">
             Stay updated!
           </h1>
-          <p className="text-base font-normal   text-darkGrey">
+          <p className="text-base font-normal  text-darkGrey">
             Join 60,000+ product managers receiving monthly updates on:
           </p>
         </section>
-        <ul className="list flex flex-col  gap-3">
-          <div className="icons flex gap-5">
+        <ul className="list flex flex-col px-7 gap-4">
+          <div className="icons flex items-start gap-4">
             <IconList />
             <li>Product discovery and building what matters</li>
           </div>
-          <div className="icons flex gap-5">
+          <div className="icons flex items-start gap-4">
             <IconList />
             <li>Measuring to ensure updates are a sucess</li>
           </div>
-          <div className="icons flex gap-5">
+          <div className="icons flex items-start gap-4">
             <IconList />
             <li>And much more!</li>
           </div>
