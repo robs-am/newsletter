@@ -13,10 +13,10 @@ const Form = () => {
   return (
     <>
       <form
-        className="form flex flex-col self-center mt-4"
+        className="form flex flex-col self-center mt-4 w-full"
         onSubmit={sendEmail}
       >
-        <div className="input-wrapper flex flex-col  mx-auto my-auto">
+        <div className="input-wrapper flex flex-col w-full lg:mx-auto my-auto">
           <label
             className="label  font-bold mb-2 text-sm"
             htmlFor="email"
@@ -35,7 +35,7 @@ const Form = () => {
           ></input>
           <button
             required
-            className=" text-white bg-darkGrey  rounded-md py-4 px-6 font-bold"
+            className=" text-white bg-darkGrey  rounded-md py-4 px-6 font-bold hover:rgba(255, 106, 58, 1)"
             type="submit"
           >
             Subscbribe to monthly newsletter
