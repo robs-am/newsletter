@@ -8,6 +8,7 @@ export default {
       lightGrey: "hsl(231, 7%, 60%)",
       white: "hsl(0, 0%, 100%)",
       red: "hsl(4, 100%, 67%)",
+      lightRed: "#FFE8E6",
     },
     fontFamily: {
       sans: ["Roboto", "sans-serif"],

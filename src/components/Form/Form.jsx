@@ -5,29 +5,42 @@ const Form = () => {
 
   function sendEmail(e) {
     e.preventDefault();
-    alert("test");
+    if (email === "") {
+      alert("Insira um e-mail válido");
+      return;
+    }
   }
   return (
     <>
-      <form className="form flex flex-col self-center" onSubmit={sendEmail}>
-        <label className="label self-start pl-10px" htmlFor="email">
-          Email Adress
-        </label>
-        <input
-          className="email border-[1px] border-lightGrey rounded-md p-4"
-          type="text"
-          placeholder="email@company.com"
-          title="Please provide a valid email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        ></input>
-        <button
-          className="text-white bg-darkGrey w-[350px] rounded-md py-4 px-6"
-          type="submit"
-        >
-          Subscbribe to monthly newsletter
-        </button>
+      <form
+        className="form flex flex-col self-center mt-4"
+        onSubmit={sendEmail}
+      >
+        <div className="input-wrapper flex flex-col  mx-auto my-auto">
+          <label
+            className="label  font-bold mb-2 text-sm"
+            htmlFor="email"
+            title="Valid email required"
+          >
+            Email Adress
+          </label>
+          <input
+            className="email w-full  focus:outline-none invalid:text-red invalid:border-red invalid:bg-lightRed border-[1px] border-lightGrey rounded-md p-4 mb-6"
+            type="text"
+            title="Valid email required"
+            pattern="^.+@[^\.].*\.[a-z]{2,}$"
+            placeholder="email@company.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          ></input>
+          <button
+            required
+            className=" text-white bg-darkGrey  rounded-md py-4 px-6 font-bold"
+            type="submit"
+          >
+            Subscbribe to monthly newsletter
+          </button>
+        </div>
       </form>
     </>
   );
