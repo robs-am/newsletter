@@ -8,13 +8,20 @@ export default {
       lightGrey: "hsl(231, 7%, 60%)",
       white: "hsl(0, 0%, 100%)",
       red: "hsl(4, 100%, 67%)",
-      gradientHover: "linear-gradient(268deg, #FF673E 6.25%, #FF5379 100%);",
+      orange: "#FF673E",
+      pink: "#FF5379",
       lightRed: "#FFE8E6",
     },
     fontFamily: {
       sans: ["Roboto", "sans-serif"],
     },
-    extend: {},
+    extend: {
+      backgroundImage: (theme) => ({
+        "gradient-primary": `linear-gradient(to right, ${theme(
+          "colors.pink"
+        )}, ${theme("colors.orange")})`,
+      }),
+    },
   },
   plugins: [],
 };

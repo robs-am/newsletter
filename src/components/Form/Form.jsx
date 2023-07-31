@@ -11,10 +11,21 @@ const Form = () => {
       return;
     }
     setErrorMsg(null);
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    //API
+    fetch("/some-api", { method: form.method, body: formData });
+
+    //objeto
+    const formJson = Object.fromEntries(formData.entries());
+    console.log(formJson);
   }
   return (
     <>
       <form
+        method="post"
         className="form flex flex-col self-center mt-4 w-full"
         onSubmit={sendEmail}
       >
@@ -27,6 +38,7 @@ const Form = () => {
           </div>
 
           <input
+            name="email"
             className="email w-full  focus:outline-none invalid:text-red invalid:border-red invalid:bg-lightRed border-[1px] border-lightGrey rounded-md p-4 mb-6"
             type="text"
             /* title="Valid email required" */
@@ -38,10 +50,10 @@ const Form = () => {
 
           <button
             required
-            className="text-white bg-darkGrey  rounded-md py-4 px-6 font-bold lg:hover:gradientHover"
+            className="text-white bg-darkGrey  rounded-md py-4 px-6 font-bold lg:hover:bg-gradient-primary hover:shadow"
             type="submit"
           >
-            Subscbribe to monthly newsletter
+            Subscribe to monthly newsletter
           </button>
         </div>
       </form>
