@@ -11,11 +11,11 @@ function App() {
     <>
       <body className="md:bg-darkGrey flex justify-center items-center md:m-0 md:h-screen md:justify-center">
         <div className="newsletter flex flex-col gap-[30px] md:flex md:justify-space-around md:flex-row-reverse md:3/4 md:gap-8 md:rounded-3xl md:p-8 bg-white">
-          <div className="w-full block md:hidden lg:hidden">
-            <ImageMobile className="w-full" />
+          <div className="image__mobile w-full  md:hidden lg:hidden">
+            <ImageMobile className="mx-auto my-auto" />
           </div>
-          <div className="image__mobile hidden md:flex lg:flex justify-end lg:w-full ">
-            <ImageDesktop className="lg:max-w-full" />
+          <div className="image__desktop hidden md:flex lg:flex justify-end lg:w-full ">
+            <ImageDesktop className=" lg:max-w-full" />
           </div>
 
           <section className="newsletter__text flex flex-col px-8 gap-5 my-5 lg:justify-center lg:flex lg:row-reverse lg:w-full">

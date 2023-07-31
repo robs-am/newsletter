@@ -2,13 +2,15 @@ import { useState } from "react";
 
 const Form = () => {
   const [email, setEmail] = useState("");
+  const [errorMsg, setErrorMsg] = useState(null);
 
   function sendEmail(e) {
     e.preventDefault();
     if (email === "") {
-      alert("Insira um e-mail válido");
+      setErrorMsg("Valid email required");
       return;
     }
+    setErrorMsg(null);
   }
   return (
     <>
@@ -17,22 +19,23 @@ const Form = () => {
         onSubmit={sendEmail}
       >
         <div className="input-wrapper flex flex-col w-full lg:mx-auto my-auto">
-          <label
-            className="label  font-bold mb-2 text-sm"
-            htmlFor="email"
-            title="Valid email required"
-          >
-            Email Adress
-          </label>
+          <div className="labels flex justify-between">
+            <label className="label  font-bold mb-2 text-sm" htmlFor="email">
+              Email Adress
+            </label>
+            {errorMsg && <p className="text-red">{errorMsg}</p>}
+          </div>
+
           <input
             className="email w-full  focus:outline-none invalid:text-red invalid:border-red invalid:bg-lightRed border-[1px] border-lightGrey rounded-md p-4 mb-6"
             type="text"
-            title="Valid email required"
+            /* title="Valid email required" */
             pattern="^.+@[^\.].*\.[a-z]{2,}$"
             placeholder="email@company.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           ></input>
+
           <button
             required
             className="text-white bg-darkGrey  rounded-md py-4 px-6 font-bold lg:hover:gradientHover"
