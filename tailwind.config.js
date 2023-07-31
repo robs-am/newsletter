@@ -8,6 +8,7 @@ export default {
       lightGrey: "hsl(231, 7%, 60%)",
       white: "hsl(0, 0%, 100%)",
       red: "hsl(4, 100%, 67%)",
+      gradientHover: "linear-gradient(268deg, #FF673E 6.25%, #FF5379 100%);",
       lightRed: "#FFE8E6",
     },
     fontFamily: {

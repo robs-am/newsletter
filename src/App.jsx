@@ -10,15 +10,15 @@ function App() {
   return (
     <>
       <body className="md:bg-darkGrey flex justify-center items-center md:m-0 md:h-screen md:justify-center">
-        <div className="newsletter flex flex-col gap-[30px] md:flex md:justify-space-around md:flex-row-reverse md:w-1/2 md:gap-8 md:rounded-3xl md:p-8 bg-white">
+        <div className="newsletter flex flex-col gap-[30px] md:flex md:justify-space-around md:flex-row-reverse md:3/4 md:gap-8 md:rounded-3xl md:p-8 bg-white">
           <div className="w-full block md:hidden lg:hidden">
-            <ImageMobile />
+            <ImageMobile className="w-full" />
           </div>
-          <div className="hidden md:block">
-            <ImageDesktop />
+          <div className="image__mobile hidden md:flex lg:flex justify-end lg:w-full ">
+            <ImageDesktop className="lg:max-w-full" />
           </div>
 
-          <section className="newxletter__text flex flex-col px-8 gap-5 my-5 lg:justify-center lg:flex lg:row-reverse">
+          <section className="newsletter__text flex flex-col px-8 gap-5 my-5 lg:justify-center lg:flex lg:row-reverse lg:w-full">
             <h1 className="title font-bold text-4xl text-darkGrey lg:text-[42px]">
               Stay updated!
             </h1>

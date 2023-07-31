@@ -35,7 +35,7 @@ const Form = () => {
           ></input>
           <button
             required
-            className=" text-white bg-darkGrey  rounded-md py-4 px-6 font-bold hover:rgba(255, 106, 58, 1)"
+            className="text-white bg-darkGrey  rounded-md py-4 px-6 font-bold lg:hover:gradientHover"
             type="submit"
           >
             Subscbribe to monthly newsletter
