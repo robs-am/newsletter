@@ -12,14 +12,14 @@ function App() {
       <body className="md:bg-darkGrey flex justify-center items-center md:m-0 md:h-screen md:justify-center">
         <div className="newsletter flex flex-col gap-[30px] md:flex md:justify-space-around md:flex-row-reverse md:3/4 md:gap-8 md:rounded-3xl md:p-8 bg-white">
           <div className="image__mobile w-full block md:hidden lg:hidden">
-            <ImageMobile className="image__mobile_img max-w-full w-full" />
+            <ImageMobile className="image__mobile_img max-w-full w-full h-full object-cover" />
           </div>
           <div className="image__desktop hidden md:block lg:flex justify-end lg:w-full ">
             <ImageDesktop className="image__desktop_img lg:max-w-full" />
           </div>
 
           <section className="newsletter__text flex flex-col px-8 gap-5 my-5 lg:justify-center lg:flex lg:row-reverse lg:w-full">
-            <h1 className="title font-bold text-4xl text-darkGrey lg:text-[42px]">
+            <h1 className="title font-bold text-4xl text-darkGrey  lg:text-[60px] lg:mb-4">
               Stay updated!
             </h1>
             <p className="text-base font-normal text-darkGrey">
