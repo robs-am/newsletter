@@ -1,8 +1,9 @@
 import "./App.css";
 
-import { ReactComponent as ImageMobile } from "./components/Image/ImageMobile.svg";
+import { ReactComponent as ImageMobile } from "./assets/images/imageMobile.svg";
 import ImageDesktop from "./components/Image/ImageDesktop";
 import { ReactComponent as IconList } from "./assets/images/icon-list.svg";
+import Confirmation from "./components/Confirmation/Confirmation";
 
 import Form from "./components/Form/Form";
 
@@ -41,6 +42,7 @@ function App() {
               </div>
             </ul>
             <Form />
+            <Confirmation />
           </section>
         </div>
       </body>
