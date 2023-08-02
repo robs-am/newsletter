@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <body className="md:bg-darkGrey flex justify-center items-center md:m-0 md:h-screen md:justify-center">
-        <div className="newsletter flex flex-col gap-[30px] md:flex md:justify-space-around md:flex-row-reverse md:3/4 md:gap-8 md:rounded-3xl md:p-8 bg-white">
+        <div className="newsletter flex flex-col gap-[30px] md:flex md:justify-space-around md:flex-row-reverse  md:gap-8 md:rounded-[2rem] md:p-6 bg-white">
           <div className="image__mobile w-full block md:hidden lg:hidden">
             <ImageMobile className="image__mobile_img max-w-full w-full h-full object-cover" />
           </div>
@@ -18,8 +18,8 @@ function App() {
             <ImageDesktop className="image__desktop_img lg:max-w-full" />
           </div>
 
-          <section className="newsletter__text flex flex-col px-8 gap-5 my-5 lg:justify-center lg:flex lg:row-reverse lg:w-full">
-            <h1 className="title font-bold text-4xl text-darkGrey  lg:text-[60px] lg:mb-4">
+          <section className="newsletter__text flex flex-col px-8 gap-5 my-5 sm: justify-center md:justify-center lg:justify-center lg:flex lg:row-reverse lg:w-full">
+            <h1 className="title font-bold text-4xl text-darkGrey  md:text-5xl lg:text-[56px] lg:mb-4">
               Stay updated!
             </h1>
             <p className="text-base font-normal text-darkGrey">

@@ -1,31 +1,68 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
-const Form = () => {
+import emailjs from "@emailjs/browser";
+
+export const Form = () => {
   const [email, setEmail] = useState("");
   const [errorMsg, setErrorMsg] = useState(null);
 
-  function sendEmail(e) {
+  const form = useRef();
+
+  const sendEmail = (e) => {
     e.preventDefault();
-    if (email === "") {
+
+    //validação email
+    if (email === "" || !/\S+@\S+\.\S+/.test(email)) {
       setErrorMsg("Valid email required");
       return;
     }
     setErrorMsg(null);
 
-    const form = e.target;
-    const formData = new FormData(form);
+    emailjs
+      .sendForm(
+        "service_z3sqsnv",
+        "template_u1r6lxo",
+        form.current,
+        "KC5RY0MDSmJA7jIP1"
+      )
+      .then(
+        (response) => {
+          console.log(response.text);
+          console.log("email enviado", response.status);
+          setEmail("");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
 
-    //API
-    fetch("/some-api", { method: form.method, body: formData });
+  // const Form = () => {
+  //   const [email, setEmail] = useState("");
+  //   const [errorMsg, setErrorMsg] = useState(null);
 
-    //objeto
-    const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
-  }
+  //   function sendEmail(e) {
+  //     e.preventDefault();
+  //     if (email === "" || !/\S+@\S+\.\S+/.test(email)) {
+  //       setErrorMsg("Valid email required");
+  //       return;
+  //     }
+  //     setErrorMsg(null);
+
+  //     const form = e.target;
+  //     const formData = new FormData(form);
+
+  //     //API
+  //     fetch("/some-api", { method: form.method, body: formData });
+
+  //     //objeto
+  //     const formJson = Object.fromEntries(formData.entries());
+  //     console.log(formJson);
+  //   }
   return (
     <>
       <form
-        method="post"
+        ref={form}
         className="form flex flex-col self-center mt-4 w-full"
         onSubmit={sendEmail}
       >
@@ -38,9 +75,9 @@ const Form = () => {
           </div>
 
           <input
-            name="email"
+            name="user_email"
             className="email w-full  focus:outline-none invalid:text-red invalid:border-red invalid:bg-lightRed border-[1px] border-lightGrey rounded-md p-4 mb-6"
-            type="text"
+            type="email"
             /* title="Valid email required" */
             pattern="^.+@[^\.].*\.[a-z]{2,}$"
             placeholder="email@company.com"
