@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import Button from "../Button/Button";
 
 import emailjs from "@emailjs/browser";
 
@@ -37,28 +38,6 @@ export const Form = () => {
       );
   };
 
-  // const Form = () => {
-  //   const [email, setEmail] = useState("");
-  //   const [errorMsg, setErrorMsg] = useState(null);
-
-  //   function sendEmail(e) {
-  //     e.preventDefault();
-  //     if (email === "" || !/\S+@\S+\.\S+/.test(email)) {
-  //       setErrorMsg("Valid email required");
-  //       return;
-  //     }
-  //     setErrorMsg(null);
-
-  //     const form = e.target;
-  //     const formData = new FormData(form);
-
-  //     //API
-  //     fetch("/some-api", { method: form.method, body: formData });
-
-  //     //objeto
-  //     const formJson = Object.fromEntries(formData.entries());
-  //     console.log(formJson);
-  //   }
   return (
     <>
       <form
@@ -85,13 +64,14 @@ export const Form = () => {
             onChange={(e) => setEmail(e.target.value)}
           ></input>
 
-          <button
+          {/*  <button
             required
-            className="text-white bg-darkGrey  rounded-md py-4 px-6 font-bold lg:hover:bg-gradient-primary hover:shadow"
+            className="text-white bg-darkGrey  rounded-md py-4 px-6 font-bold lg:hover:bg-gradient-primary hover:transition-opacity"
             type="submit"
           >
             Subscribe to monthly newsletter
-          </button>
+          </button> */}
+          <Button title={"Subscribe to monthly newsletter"} />
         </div>
       </form>
     </>
