@@ -1,45 +1,77 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import Button from "../Button/Button";
 
-const Form = () => {
+import emailjs from "@emailjs/browser";
+
+export const Form = () => {
   const [email, setEmail] = useState("");
+  const [errorMsg, setErrorMsg] = useState(null);
 
-  function sendEmail(e) {
+  const form = useRef();
+
+  const sendEmail = (e) => {
     e.preventDefault();
-    if (email === "") {
-      alert("Insira um e-mail válido");
+
+    //validação email
+    if (email === "" || !/\S+@\S+\.\S+/.test(email)) {
+      setErrorMsg("Valid email required");
       return;
     }
-  }
+    setErrorMsg(null);
+
+    emailjs
+      .sendForm(
+        "service_z3sqsnv",
+        "template_u1r6lxo",
+        form.current,
+        "KC5RY0MDSmJA7jIP1"
+      )
+      .then(
+        (response) => {
+          console.log(response.text);
+          console.log("email enviado", response.status);
+          setEmail("");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
   return (
     <>
       <form
-        className="form flex flex-col self-center mt-4"
+        ref={form}
+        className="form flex flex-col self-center mt-4 w-full"
         onSubmit={sendEmail}
       >
-        <div className="input-wrapper flex flex-col  mx-auto my-auto">
-          <label
-            className="label  font-bold mb-2 text-sm"
-            htmlFor="email"
-            title="Valid email required"
-          >
-            Email Adress
-          </label>
+        <div className="input-wrapper flex flex-col w-full lg:mx-auto my-auto">
+          <div className="labels flex justify-between">
+            <label className="label  font-bold mb-2 text-sm" htmlFor="email">
+              Email Adress
+            </label>
+            {errorMsg && <p className="text-red">{errorMsg}</p>}
+          </div>
+
           <input
+            name="user_email"
             className="email w-full  focus:outline-none invalid:text-red invalid:border-red invalid:bg-lightRed border-[1px] border-lightGrey rounded-md p-4 mb-6"
-            type="text"
-            title="Valid email required"
+            type="email"
+            /* title="Valid email required" */
             pattern="^.+@[^\.].*\.[a-z]{2,}$"
             placeholder="email@company.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           ></input>
-          <button
+
+          {/*  <button
             required
-            className=" text-white bg-darkGrey  rounded-md py-4 px-6 font-bold"
+            className="text-white bg-darkGrey  rounded-md py-4 px-6 font-bold lg:hover:bg-gradient-primary hover:transition-opacity"
             type="submit"
           >
-            Subscbribe to monthly newsletter
-          </button>
+            Subscribe to monthly newsletter
+          </button> */}
+          <Button title={"Subscribe to monthly newsletter"} />
         </div>
       </form>
     </>
