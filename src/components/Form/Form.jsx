@@ -10,11 +10,9 @@ export const Form = ({ onSubmit }) => {
 
   const form = useRef();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Chama sendEmail com o evento
-    sendEmail(event);
+    sendEmail();
   };
 
   const sendEmail = (e) => {
