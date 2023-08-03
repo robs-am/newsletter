@@ -3,16 +3,19 @@ import Button from "../Button/Button";
 
 import emailjs from "@emailjs/browser";
 
-export const Form = () => {
+// eslint-disable-next-line react/prop-types
+export const Form = ({ onSubmit }) => {
   const [email, setEmail] = useState("");
   const [errorMsg, setErrorMsg] = useState(null);
 
   const form = useRef();
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    sendEmail();
+  };
 
-    //validação email
+  const sendEmail = (e) => {
     if (email === "" || !/\S+@\S+\.\S+/.test(email)) {
       setErrorMsg("Valid email required");
       return;
@@ -31,19 +34,21 @@ export const Form = () => {
           console.log(response.text);
           console.log("email enviado", response.status);
           setEmail("");
+
+          // Se o envio do email foi bem-sucedido, chama onSubmit
+          onSubmit();
         },
         (error) => {
           console.log(error.text);
         }
       );
   };
-
   return (
     <>
       <form
         ref={form}
         className="form flex flex-col self-center mt-4 w-full"
-        onSubmit={sendEmail}
+        onSubmit={handleSubmit}
       >
         <div className="input-wrapper flex flex-col w-full lg:mx-auto my-auto">
           <div className="labels flex justify-between">
@@ -64,13 +69,6 @@ export const Form = () => {
             onChange={(e) => setEmail(e.target.value)}
           ></input>
 
-          {/*  <button
-            required
-            className="text-white bg-darkGrey  rounded-md py-4 px-6 font-bold lg:hover:bg-gradient-primary hover:transition-opacity"
-            type="submit"
-          >
-            Subscribe to monthly newsletter
-          </button> */}
           <Button title={"Subscribe to monthly newsletter"} />
         </div>
       </form>
