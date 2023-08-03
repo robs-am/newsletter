@@ -1,13 +1,19 @@
 import "./App.css";
+import { useState } from "react";
 
 import { ReactComponent as ImageMobile } from "./assets/images/imageMobile.svg";
-import ImageDesktop from "./components/Image/ImageDesktop";
+import ImageDesktop from "./components/ImageDesktop/ImageDesktop";
 import { ReactComponent as IconList } from "./assets/images/icon-list.svg";
 import Confirmation from "./components/Confirmation/Confirmation";
 
 import Form from "./components/Form/Form";
 
 function App() {
+  const [isConfirmed, setIsConfirmed] = useState(false);
+
+  const handleSubmit = () => {
+    setIsConfirmed(true);
+  };
   return (
     <>
       <body className="md:bg-darkGrey flex justify-center items-center md:m-0 md:h-screen md:justify-center">
@@ -26,7 +32,6 @@ function App() {
             <p className="text-base font-normal text-darkGrey">
               Join 60,000+ product managers receiving monthly updates on:
             </p>
-
             <ul className="list flex flex-col  gap-4">
               <div className="icons flex items-start gap-4">
                 <IconList />
@@ -41,8 +46,11 @@ function App() {
                 <li>And much more!</li>
               </div>
             </ul>
-            <Form />
-            <Confirmation />
+            {!isConfirmed ? (
+              <Form onSubmit={() => setIsConfirmed(true)} />
+            ) : (
+              <Confirmation onDismiss={() => setIsConfirmed(false)} />
+            )}
           </section>
         </div>
       </body>
