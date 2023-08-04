@@ -13,6 +13,7 @@ export const Form = ({ onSubmit }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     sendEmail();
+    onSubmit(email);
   };
 
   const sendEmail = (e) => {
@@ -36,7 +37,7 @@ export const Form = ({ onSubmit }) => {
           setEmail("");
 
           // Se o envio do email foi bem-sucedido, chama onSubmit
-          onSubmit();
+          //onSubmit();
         },
         (error) => {
           console.log(error.text);
@@ -62,7 +63,6 @@ export const Form = ({ onSubmit }) => {
             name="user_email"
             className="email w-full  focus:outline-none invalid:text-red invalid:border-red invalid:bg-lightRed border-[1px] border-lightGrey rounded-md p-4 mb-6"
             type="email"
-            /* title="Valid email required" */
             pattern="^.+@[^\.].*\.[a-z]{2,}$"
             placeholder="email@company.com"
             value={email}

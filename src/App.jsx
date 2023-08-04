@@ -4,14 +4,19 @@ import Confirmation from "./components/Confirmation/Confirmation";
 
 function App() {
   const [page, setPage] = useState("newsletter");
+  const [userEmail, setUserEmail] = useState("");
 
-  const goToConfirmation = () => setPage("confirmation");
+  const goToConfirmation = (email) => {
+    setUserEmail(email);
+    setPage("confirmation");
+  };
+
   const goToNewsletter = () => setPage("newsletter");
 
   if (page === "newsletter") {
     return <Newsletter onSubscribe={goToConfirmation} />;
   } else {
-    return <Confirmation onDismiss={goToNewsletter} />;
+    return <Confirmation userEmail={userEmail} onDismiss={goToNewsletter} />;
   }
 }
 

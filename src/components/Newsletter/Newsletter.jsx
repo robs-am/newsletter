@@ -9,10 +9,12 @@ function Newsletter({ onSubscribe }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await sendEmail();
+
     onSubscribe();
   };
+
   return (
-    <div className="newsletter flex flex-col gap-[30px] md:flex md:justify-space-around md:flex-row-reverse  md:gap-8 md:rounded-[2rem] md:p-6 bg-white">
+    <div className="newsletter flex flex-col gap-[30px] md:flex md:justify-space-around md:max-w-[90%]  mx-auto my-auto md:flex-row-reverse  md:gap-8 md:rounded-[2rem] md:p-6 bg-white">
       <div className="image__mobile w-full block md:hidden lg:hidden">
         <ImageMobile className="image__mobile_img max-w-full w-full h-full object-cover" />
       </div>
