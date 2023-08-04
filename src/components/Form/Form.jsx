@@ -10,18 +10,37 @@ export const Form = ({ onSubmit }) => {
 
   const form = useRef();
 
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+
+  //   sendEmail(event).then(() => {
+  //     // Depois de enviar o email com sucesso, chame onSubmit
+  //     onSubmit(email);
+  //   });
+  // };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    sendEmail();
-    onSubmit(email);
-  };
 
-  const sendEmail = (e) => {
+    // Realiza a validação do email
     if (email === "" || !/\S+@\S+\.\S+/.test(email)) {
       setErrorMsg("Valid email required");
       return;
     }
-    setErrorMsg(null);
+
+    // Caso o email seja válido, realiza o envio
+    await sendEmail();
+
+    // E finalmente, redireciona para a página de confirmação
+    onSubmit(email);
+  };
+
+  const sendEmail = async (e) => {
+    // if (email === "" || !/\S+@\S+\.\S+/.test(email)) {
+    //   setErrorMsg("Valid email required");
+    //   return;
+    // }
+    // setErrorMsg(null);
 
     emailjs
       .sendForm(
