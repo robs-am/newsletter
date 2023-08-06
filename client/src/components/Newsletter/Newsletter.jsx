@@ -1,17 +1,17 @@
-import { ReactComponent as ImageMobile } from "./../../assets/images/imageMobile.svg";
+import { ReactComponent as ImageMobile } from "./imageMobile.svg";
 import ImageDesktop from "./../../components/ImageDesktop/ImageDesktop";
-import { ReactComponent as IconList } from "./../../assets/images/icon-list.svg";
+import { ReactComponent as IconList } from "./icon-list.svg";
 
 import Form from "./../Form/Form";
 
 // eslint-disable-next-line react/prop-types
 function Newsletter({ onSubscribe }) {
-   const handleSubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     await sendEmail();
 
     onSubscribe(email);
-  }; 
+  };
 
   return (
     <div className="newsletter flex flex-col gap-[30px] md:flex md:justify-space-around md:max-w-[90%]  mx-auto my-auto md:flex-row-reverse  md:gap-8 md:rounded-[2rem] md:p-6 bg-white">

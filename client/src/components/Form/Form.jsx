@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import Button from "../Button/Button";
 
 import emailjs from "@emailjs/browser";
+import sendgrid from "@sendgrid/mail";
 
 // eslint-disable-next-line react/prop-types
 export const Form = ({ onSubmit }) => {
@@ -9,15 +10,6 @@ export const Form = ({ onSubmit }) => {
   const [errorMsg, setErrorMsg] = useState(null);
 
   const form = useRef();
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   sendEmail(event).then(() => {
-  //     // Depois de enviar o email com sucesso, chame onSubmit
-  //     onSubmit(email);
-  //   });
-  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,23 +23,35 @@ export const Form = ({ onSubmit }) => {
     // Caso o email seja válido, realiza o envio
     await sendEmail();
 
-    // E finalmente, redireciona para a página de confirmação
+    //  redireciona para a página de confirmação
     onSubmit(email);
   };
 
   const sendEmail = async (e) => {
-    // if (email === "" || !/\S+@\S+\.\S+/.test(email)) {
-    //   setErrorMsg("Valid email required");
-    //   return;
-    // }
-    // setErrorMsg(null);
-
+    // sendgrid.setApiKey(
+    //   "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"
+    // );
+    // const msg = {
+    //   to: "roberta.amaro89@gmail.com", // Change to your recipient
+    //   from: "roberta.amaro89@gmail.com", // Change to your verified sender
+    //   subject: "Sending with SendGrid is Fun",
+    //   text: "and easy to do anywhere, even with Node.js",
+    //   html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+    // };
+    // sendgrid
+    //   .send(msg)
+    //   .then(() => {
+    //     console.log("Email sent");
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
     emailjs
       .sendForm(
         "service_z3sqsnv",
         "template_u1r6lxo",
         form.current,
-        "KC5RY0MDSmJA7jIP1"
+        "tEYcp8pb-sp-MhD9r"
       )
       .then(
         (response) => {
@@ -80,6 +84,7 @@ export const Form = ({ onSubmit }) => {
 
           <input
             name="user_email"
+            id="service_z3sqsnv"
             className="email w-full  focus:outline-none invalid:text-red invalid:border-red invalid:bg-lightRed border-[1px] border-lightGrey rounded-md p-4 mb-6"
             type="email"
             pattern="^.+@[^\.].*\.[a-z]{2,}$"
