@@ -29,7 +29,7 @@ export const Form = ({ onSubmit }) => {
 
   const sendEmail = async (e) => {
     // sendgrid.setApiKey(
-    //   "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"
+    //
     // );
     // const msg = {
     //   to: "roberta.amaro89@gmail.com", // Change to your recipient
