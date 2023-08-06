@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import Button from "../Button/Button";
 
 import emailjs from "@emailjs/browser";
+import sendgrid from "@sendgrid/mail";
 
 // eslint-disable-next-line react/prop-types
 export const Form = ({ onSubmit }) => {
@@ -12,22 +13,45 @@ export const Form = ({ onSubmit }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    sendEmail();
-  };
 
-  const sendEmail = (e) => {
+    // Realiza a validação do email
     if (email === "" || !/\S+@\S+\.\S+/.test(email)) {
       setErrorMsg("Valid email required");
       return;
     }
-    setErrorMsg(null);
 
+    // Caso o email seja válido, realiza o envio
+    await sendEmail();
+
+    //  redireciona para a página de confirmação
+    onSubmit(email);
+  };
+
+  const sendEmail = async (e) => {
+    // sendgrid.setApiKey(
+    //   "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"
+    // );
+    // const msg = {
+    //   to: "roberta.amaro89@gmail.com", // Change to your recipient
+    //   from: "roberta.amaro89@gmail.com", // Change to your verified sender
+    //   subject: "Sending with SendGrid is Fun",
+    //   text: "and easy to do anywhere, even with Node.js",
+    //   html: "<strong>and easy to do anywhere, even with Node.js</strong>",
+    // };
+    // sendgrid
+    //   .send(msg)
+    //   .then(() => {
+    //     console.log("Email sent");
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
     emailjs
       .sendForm(
         "service_z3sqsnv",
         "template_u1r6lxo",
         form.current,
-        "KC5RY0MDSmJA7jIP1"
+        "tEYcp8pb-sp-MhD9r"
       )
       .then(
         (response) => {
@@ -36,7 +60,7 @@ export const Form = ({ onSubmit }) => {
           setEmail("");
 
           // Se o envio do email foi bem-sucedido, chama onSubmit
-          onSubmit();
+          //onSubmit();
         },
         (error) => {
           console.log(error.text);
@@ -60,9 +84,9 @@ export const Form = ({ onSubmit }) => {
 
           <input
             name="user_email"
+            id="service_z3sqsnv"
             className="email w-full  focus:outline-none invalid:text-red invalid:border-red invalid:bg-lightRed border-[1px] border-lightGrey rounded-md p-4 mb-6"
             type="email"
-            /* title="Valid email required" */
             pattern="^.+@[^\.].*\.[a-z]{2,}$"
             placeholder="email@company.com"
             value={email}
