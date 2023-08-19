@@ -5,6 +5,7 @@ import { getFirestore } from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
 const firebaseConfig = {
   apiKey: "AIzaSyCtXkiKNE_aqhHDe9ypwLopv8Wf9p93akA",
   authDomain: "newsletter-d762e.firebaseapp.com",

@@ -1,7 +1,9 @@
 import { useState, useRef } from "react";
 import Button from "../Button/Button";
-import { db } from "./firebase.Config.js";
-import { initializeApp } from "firebase/app";
+// import { db } from "./firebase";
+// import firebase from "firebase/app";
+import { db } from "./firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 // eslint-disable-next-line react/prop-types
 export const Form = ({ onSubmit }) => {
@@ -12,6 +14,17 @@ export const Form = ({ onSubmit }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const emailsCollection = collection(db, "emails");
+    try {
+      await addDoc(emailsCollection, {
+        email: email, // ou 'input' se essa for a variável correta
+        time: serverTimestamp(),
+      });
+      console.log("Documento adicionado com sucesso");
+    } catch (error) {
+      console.error("Erro ao adicionar documento:", error);
+    }
 
     if (email === "" || !/\S+@\S+\.\S+/.test(email)) {
       setErrorMsg("Valid email required");
