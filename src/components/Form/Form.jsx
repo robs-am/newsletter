@@ -1,8 +1,9 @@
 import { useState, useRef } from "react";
 import Button from "../Button/Button";
-
-import emailjs from "@emailjs/browser";
-import sendgrid from "@sendgrid/mail";
+// import { db } from "./firebase";
+// import firebase from "firebase/app";
+import { db } from "./firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 // eslint-disable-next-line react/prop-types
 export const Form = ({ onSubmit }) => {
@@ -14,59 +15,28 @@ export const Form = ({ onSubmit }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Realiza a validação do email
+    const emailsCollection = collection(db, "emails");
+    try {
+      await addDoc(emailsCollection, {
+        email: email, // ou 'input' se essa for a variável correta
+        time: serverTimestamp(),
+      });
+      console.log("Documento adicionado com sucesso");
+    } catch (error) {
+      console.error("Erro ao adicionar documento:", error);
+    }
+
     if (email === "" || !/\S+@\S+\.\S+/.test(email)) {
       setErrorMsg("Valid email required");
       return;
     }
 
-    // Caso o email seja válido, realiza o envio
     await sendEmail();
 
-    //  redireciona para a página de confirmação
     onSubmit(email);
   };
 
-  const sendEmail = async (e) => {
-    // sendgrid.setApiKey(
-    //
-    // );
-    // const msg = {
-    //   to: "roberta.amaro89@gmail.com", // Change to your recipient
-    //   from: "roberta.amaro89@gmail.com", // Change to your verified sender
-    //   subject: "Sending with SendGrid is Fun",
-    //   text: "and easy to do anywhere, even with Node.js",
-    //   html: "<strong>and easy to do anywhere, even with Node.js</strong>",
-    // };
-    // sendgrid
-    //   .send(msg)
-    //   .then(() => {
-    //     console.log("Email sent");
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-    emailjs
-      .sendForm(
-        "service_z3sqsnv",
-        "template_u1r6lxo",
-        form.current,
-        "tEYcp8pb-sp-MhD9r"
-      )
-      .then(
-        (response) => {
-          console.log(response.text);
-          console.log("email enviado", response.status);
-          setEmail("");
-
-          // Se o envio do email foi bem-sucedido, chama onSubmit
-          //onSubmit();
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
+  const sendEmail = async (e) => {};
   return (
     <>
       <form
@@ -83,8 +53,6 @@ export const Form = ({ onSubmit }) => {
           </div>
 
           <input
-            name="user_email"
-            id="service_z3sqsnv"
             className="email w-full  focus:outline-none invalid:text-red invalid:border-red invalid:bg-lightRed border-[1px] border-lightGrey rounded-md p-4 mb-6"
             type="email"
             pattern="^.+@[^\.].*\.[a-z]{2,}$"

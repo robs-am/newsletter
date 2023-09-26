@@ -5,5 +5,5 @@
 @tailwind utilities;
 
 body {
-  @apply md:bg-darkGrey flex justify-center items-center md:h-screen md:justify-center;
+  @apply font-sans md:bg-darkGrey flex justify-center items-center md:h-screen md:justify-center;
 }
